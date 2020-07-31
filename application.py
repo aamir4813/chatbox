@@ -2,6 +2,7 @@ from flask import Flask
 from flask_socketio import SocketIO
 from flask_sqlalchemy import SQLAlchemy
 from models.user_model import *
+from forms_wtf import *
 
 # Define Flask app
 app = Flask(__name__)
@@ -18,12 +19,10 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 socketio = SocketIO(app , manage_session=False)
 
 
-
-@app.route('/')
-def index():
-
-    return "hello"
-
+# import every controller here
+from controller.index import *
+from controller.login import *
+from controller.logout import *
 
 if __name__ == "__main__":
     socketio.run(app , debug=True)
