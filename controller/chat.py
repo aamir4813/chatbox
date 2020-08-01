@@ -2,7 +2,7 @@ from application import app
 from flask import flash , render_template , redirect , url_for 
 from flask_login import current_user
 
-ROOMS = []
+ROOMS = ["Launge" , "Gaming" , "Coding"  ]
 @app.route("/chat", methods=['GET', 'POST'])
 def chat():
 
