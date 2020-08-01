@@ -1,7 +1,7 @@
 from flask_login import logout_user
 from application import app , db 
 from flask import render_template , flash , redirect , url_for , request
-from forms_wtf import *
+from app_data.forms_wtf import *
 
 @app.route("/logout", methods=['GET'])
 def logout():

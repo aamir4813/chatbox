@@ -1,12 +1,16 @@
 from application import app , db 
 from flask import render_template , flash , redirect , url_for , request
-from forms_wtf import *
+from app_data.forms_wtf import *
 from flask_login import login_user, current_user
+from models.user_model import User
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
 
     reg_form = RegistrationForm()
+
+    if current_user.is_authenticated :
+        return redirect(url_for('chat'))
 
     # Update database if validation success
     if reg_form.validate_on_submit():
