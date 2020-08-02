@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 from flask import Flask
 from flask_socketio import SocketIO
 from flask_sqlalchemy import SQLAlchemy
@@ -7,12 +9,13 @@ from flask_login import LoginManager
 
 # Define Flask app
 app = Flask(__name__)
-app.secret_key="heythisisme"
+app.secret_key=os.getenv("SECRET_KEY")
 
+load_dotenv()
 
 # DB config
-app.config['SQLALCHEMY_DATABASE_URI']="postgres://ipzvyjpoapobve:9ddb079044385255fe35a7cf31fce27476c92360104cd14c1cb9ac05332181ff@ec2-3-216-129-140.compute-1.amazonaws.com:5432/d8oth2s9b514qc"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI']=os.getenv("DATABASE_URL")
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.getenv("SQLALCHEMY_STATUS")
 db = SQLAlchemy(app)
 
 # configure Flask Login
@@ -39,4 +42,4 @@ from app_data.sockets import *
 
 
 if __name__ == "__main__":
-    socketio.run(app , debug=True)
+    app.run()
