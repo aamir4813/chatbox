@@ -29,3 +29,8 @@ def index():
         return redirect(url_for('login'))
 
     return render_template("index.html", form=reg_form)
+
+
+@app.route('/temp')
+def temp2():
+    return render_template('temp.html')

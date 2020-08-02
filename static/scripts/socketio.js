@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const br = document.createElement('br')
             if (data.username == username) {
                 p.setAttribute("class", "my-msg");
-
+                // console.log(username)
                 span_username.setAttribute("class", "my-username");
                 span_username.innerText = data.username;
 

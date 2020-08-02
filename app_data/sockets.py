@@ -9,12 +9,11 @@ eventlet.monkey_patch()
 
 @socketio.on('incoming-msg')
 def on_message(data):
-    """Broadcast messages"""
 
+    print(f'\n\n{data}\n\n')
     msg = data["msg"]
     username = data["username"]
     room = data["room"]
-    # Set timestamp
     time_stamp = strftime('%b-%d %I:%M%p', localtime())
     send({"username": username, "msg": msg, "time_stamp": time_stamp}, room=room)
 
@@ -27,7 +26,6 @@ def on_join(data):
     room = data["room"]
     join_room(room)
 
-    # Broadcast that new user has joined
     send({"msg": username + " has joined the " + room + " room."}, room=room)
 
 
