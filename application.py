@@ -49,9 +49,7 @@ from controller.chat import *
 from app_data.sockets import *
 
 
-@app.route('/temp')
-def temp():
-    render_template('temp.html')
 
 if __name__ == "__main__":
-    app.run()
+    # app.run()
+    socketio.run(app , debug=True)
