@@ -27,7 +27,9 @@ login.init_app(app)
 
 @login.user_loader
 def load_user(id):
-    return User.query.get(int(id))
+    val = User.query.get(int(id))
+    db.session.remove()
+    return val
 
 # csrf wtf form config
 app.config['WTF_CSRF_SECRET_KEY'] = os.getenv("CSRF_SECRET")
@@ -46,6 +48,10 @@ from controller.chat import *
 # import sockets
 from app_data.sockets import *
 
+
+@app.route('/temp')
+def temp():
+    render_template('temp.html')
 
 if __name__ == "__main__":
     app.run()

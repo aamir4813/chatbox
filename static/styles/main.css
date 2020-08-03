@@ -80,9 +80,7 @@ input[type='password']:focus {
     }
 }
 
-
-/* @media (min-width: 1000px) {
-    #righthand-side {
-        max-width: 50%;
-    }
-} */
+.bottom-fix {
+    position: absolute;
+    bottom: 2px;
+}

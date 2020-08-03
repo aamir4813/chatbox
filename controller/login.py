@@ -16,6 +16,7 @@ def login():
     # Allow login if validation success
     if login_form.validate_on_submit():
         user_object = User.query.filter_by(username=login_form.username.data).first()
+        db.session.remove()
         login_user(user_object)
         return redirect(url_for('chat'))
 

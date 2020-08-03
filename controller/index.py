@@ -24,6 +24,7 @@ def index():
         user = User(username=username, password_hash=password_hash)
         db.session.add(user)
         db.session.commit()
+        db.session.remove()
 
         flash('Registered successfully. Please login.', 'success')
         return redirect(url_for('login'))
