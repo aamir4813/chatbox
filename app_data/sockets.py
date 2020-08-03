@@ -10,7 +10,7 @@ eventlet.monkey_patch()
 @socketio.on('incoming-msg')
 def on_message(data):
 
-    print(f'\n\n{data}\n\n')
+    # print(f'\n\n{data}\n\n')
     msg = data["msg"]
     username = data["username"]
     room = data["room"]
@@ -20,7 +20,6 @@ def on_message(data):
 
 @socketio.on('join')
 def on_join(data):
-    """User joins a room"""
 
     username = data["username"]
     room = data["room"]
@@ -31,14 +30,13 @@ def on_join(data):
 
 @socketio.on('leave')
 def on_leave(data):
-    """User leaves a room"""
 
     username = data['username']
     room = data['room']
     leave_room(room)
     send({"msg": username + " has left the room"}, room=room)
 
-
+# for testing
 # @socketio.on('some-event')
 # def do_here(data):
 #     print(f'\n\n yes we got that \n\n')

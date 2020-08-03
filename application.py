@@ -7,11 +7,14 @@ from models.user_model import *
 from app_data.forms_wtf import *
 from flask_login import LoginManager
 
+# Load dotevn 
+load_dotenv()
+
+
 # Define Flask app
 app = Flask(__name__)
 app.secret_key=os.getenv("SECRET_KEY")
 
-load_dotenv()
 
 # DB config
 app.config['SQLALCHEMY_DATABASE_URI']=os.getenv("DATABASE_URL")
@@ -25,6 +28,9 @@ login.init_app(app)
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
+
+# csrf wtf form config
+app.config['WTF_CSRF_SECRET_KEY'] = os.getenv("CSRF_SECRET")
 
 
 #socketio config
